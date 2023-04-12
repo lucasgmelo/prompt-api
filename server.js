@@ -1,3 +1,4 @@
 const app = require("./config/app");
 
-app.listen(3003);
+app.listen(process.env.PORT || 5000)
+
