@@ -2,9 +2,9 @@ const Prompt = require("../models/Prompt");
 
 module.exports = {
   getPrompts: async () => {
-    const prompts = await Prompt.find();
+   const lastPrompt = await Prompt.findOne({}, {}, { sort: { 'created_at' : -1 } });
 
-    return prompts;
+   return lastPrompt;
   },
   getPromptById: async (id) => {
     const prompt = await Prompt.findById(id);
