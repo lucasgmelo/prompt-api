@@ -7,8 +7,6 @@ const {
 } = require("../repositories/promptRepositories");
 
 const {
-  getList,
-  createList,
   deleteList,
 } = require("../repositories/listRepositories");
 
@@ -17,11 +15,11 @@ const { createUsed } = require("../repositories/usedRepositories");
 module.exports = {
   list: async (req, res) => {
     try {
-      const prompts = await getPrompts();
+      const prompt = await getPrompts();
 
-      if(prompts.length < 1 ) return res.status(400).send('There are no prompts');
+      if(!prompt) return res.status(400).send('There are no prompts');
 
-      return res.send(prompts[0]);
+      return res.send(prompt);
     } catch (error) {
       res.status(400).send(error);
     }
