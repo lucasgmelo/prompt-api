@@ -35,16 +35,16 @@ module.exports = {
   },
   dayRoutine: async (req, res) => {
     try {
-      const prompts = await getPrompts();
+      const prompt = await getPrompts();
       
-      if(prompts.length > 1) {
+      if(prompt) {
         const newUsed = {
-          prompt: prompts[0].prompt,
-          image: prompts[0].image,
+          prompt: prompt.prompt,
+          image: prompt.image,
         }
         
         await createUsed(newUsed)
-        await deletePrompt(prompts[0].id)
+        await deletePrompt(prompt.id)
   
         res.status(201).send('Done!');
       }
